@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<!-- Main layout: everything is inside a VBox (vertical box) -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.EnrollmentController"
+      stylesheets="@../styles/style.css"
+      spacing="0"
+      prefWidth="780"
+      prefHeight="600">
+
+    <!-- ===== TOP HEADER ===== -->
+    <VBox styleClass="header" alignment="CENTER" spacing="4">
+        <Label text="🎓 Student Course Enrollment System" styleClass="header-title"/>
+        <Label text="Islamic University of Gaza — Programming III Lab" styleClass="header-sub"/>
+    </VBox>
+
+    <!-- ===== FORM AREA ===== -->
+    <VBox styleClass="form-box" spacing="14">
+        <Label text="Enrollment Details" styleClass="section-label"/>
+
+        <!-- Row 1: Student ID -->
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Student ID:" styleClass="field-label" prefWidth="110"/>
+            <TextField fx:id="txtStudentId" promptText="e.g. S001" styleClass="input-field" prefWidth="240"/>
+        </HBox>
+
+        <!-- Row 2: Course ID -->
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Course ID:" styleClass="field-label" prefWidth="110"/>
+            <TextField fx:id="txtCourseId" promptText="e.g. CS101" styleClass="input-field" prefWidth="240"/>
+        </HBox>
+
+        <!-- Row 3: Enrollment Date — DatePicker so user picks from a calendar -->
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Enrollment Date:" styleClass="field-label" prefWidth="110"/>
+            <DatePicker fx:id="datePicker" promptText="Pick a date" prefWidth="240"/>
+        </HBox>
+
+        <!-- Buttons Row -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="➕ Add"    styleClass="btn-add"    onAction="#clickAdd"/>
+            <Button text="✏️ Update" styleClass="btn-update" onAction="#clickUpdate"/>
+            <Button text="🗑️ Delete" styleClass="btn-delete" onAction="#clickDelete"/>
+            <Button text="🔄 Clear"  styleClass="btn-clear"  onAction="#clickClear"/>
+        </HBox>
+
+        <!-- Message label (shows success or error) -->
+        <Label fx:id="labelMsg" text="" styleClass="msg-label"/>
+    </VBox>
+
+    <!-- ===== TABLE AREA ===== -->
+    <VBox styleClass="table-box" VBox.vgrow="ALWAYS" spacing="8">
+        <Label text="All Enrollments" styleClass="section-label"/>
+
+        <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="my-table">
+            <columns>
+                <TableColumn fx:id="colId"        text="ID"              prefWidth="60"/>
+                <TableColumn fx:id="colStudentId"  text="Student ID"      prefWidth="180"/>
+                <TableColumn fx:id="colCourseId"   text="Course ID"       prefWidth="180"/>
+                <TableColumn fx:id="colDate"       text="Enrollment Date" prefWidth="200"/>
+            </columns>
+            <placeholder>
+                <Label text="No enrollments found." style="-fx-text-fill: #aaa;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+</VBox>
